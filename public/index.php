@@ -1,0 +1,29 @@
+<?php require '../includes/init.php'; ?>
+<?php include 'parts/header.php'; ?>
+
+<!-- Page Content -->
+<div class="container">
+
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <h1>A Bootstrap Starter Template</h1>
+            <p class="lead">Complete with pre-defined file paths that you won't have to change!!</p>
+
+            <?php
+
+            echo Hash::make('secret');
+            ?>
+
+
+            <ul class="list-unstyled">
+                <li>Bootstrap v3.3.7</li>
+                <li>jQuery v1.11.1</li>
+            </ul>
+        </div>
+    </div>
+    <!-- /.row -->
+
+</div>
+<!-- /.container -->
+
+<?php include 'parts/footer.php'; ?>
