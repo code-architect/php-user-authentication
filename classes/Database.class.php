@@ -4,7 +4,6 @@
 class Database
 {
 
-
 private static $_db; //singleton connection object
 
 private function __construct() {}	// disallow creating a new obj of the class with new Database()

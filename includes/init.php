@@ -22,7 +22,7 @@ defined("CLASSES_DIR") || define("CLASSES_DIR", ROOT_PATH.DS."classes");
  */
 function caAutoloader($className){
 
-    $file = CLASSES_DIR.DS.$className.'.php';
+    $file = CLASSES_DIR.DS.$className.'.class.php';
     if(file_exists($file)){
         require_once($file);
     }
