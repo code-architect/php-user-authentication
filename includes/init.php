@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Initalisation 
+ * Initialisation
  */
 defined("DS") || define("DS", DIRECTORY_SEPARATOR);
 

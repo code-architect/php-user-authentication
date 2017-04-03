@@ -4,18 +4,16 @@
 <!-- Page Content -->
 <div class="container">
 
+
     <div class="row">
         <div class="col-lg-12 text-center">
             <h1>A Bootstrap Starter Template</h1>
-            <p class="lead">Complete with pre-defined file paths that you won't have to change!!</p>
+            <p class="lead">Click Below to go to the register Page</p>
 
-            <?php
-
-            echo Hash::make('secret');
-            ?>
+            <a href="register.php">Register New User</a>
 
 
-            <ul class="list-unstyled">
+            <ul class="list-unstyled"><br/><br/><br/><br/>
                 <li>Bootstrap v3.3.7</li>
                 <li>jQuery v1.11.1</li>
             </ul>
