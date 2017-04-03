@@ -14,24 +14,39 @@
             {
                 if(isset($_POST['sign-up']))
                 {
-                    User::signUp($_POST);
-
-                    // redirect to sign up page
-                    header('Location: sign-up-success.php');
+                    $users = User::signUp($_POST);
+                    if(empty($users->errors))
+                    {
+                        // redirect to sign up page
+                        header('Location: sign-up-success.php');
+                    }
                 }
             }
-
             ?>
-
+            <?php
+            if(isset($users))
+            {
+                foreach($users->errors as $error)
+                {
+                    echo '<div class="alert alert-danger">
+                            <strong>Danger!</strong> '.$error.'
+                          </div>';
+                }
+            }
+            ?>
 
             <form method="post" action="register.php">
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" class="form-control" name="name" id="name">
+                    <input type="text" class="form-control" name="name" id="name"
+                           value="<?php echo isset($users)? htmlspecialchars($users->name):''; ?>"
+                    >
                 </div>
                 <div class="form-group">
                     <label for="email">Email address:</label>
-                    <input type="email" class="form-control" name="email" id="email">
+                    <input type="email" class="form-control" name="email" id="email"
+                           value="<?php echo isset($users)? htmlspecialchars($users->email):''; ?>"
+                    >
                 </div>
                 <div class="form-group">
                     <label for="pwd">Password:</label>

@@ -10,7 +10,12 @@
             <h1>A Bootstrap Starter Template</h1>
             <p class="lead">Click Below to go to the register Page</p>
 
-            <a href="register.php">Register New User</a>
+            <a href="register.php">Register New User</a><br/>
+
+            <?php
+            $ar =['q'];
+            var_dump(empty($ar));
+            ?>
 
 
             <ul class="list-unstyled"><br/><br/><br/><br/>
