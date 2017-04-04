@@ -82,6 +82,13 @@ class Auth
     }
 
 
+    public function logout()
+    {
+        $_SESSION = [];
+        session_destroy();
+    }
+
+
 
 
 

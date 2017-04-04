@@ -32,3 +32,11 @@ function caAutoloader($className){
 spl_autoload_register('caAutoloader');
 
 Auth::init();
+
+
+
+
+function redirect($location)
+{
+    header('Location: '.$location);
+}

@@ -59,7 +59,7 @@ if(!Auth::getInstance()->isLoggedIn())
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="#">Logout</a>
+                    <a href="../logout.php">Logout</a>
                 </li>
                 <li>
                     <a href="#">Register</a>
