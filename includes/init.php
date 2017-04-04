@@ -30,3 +30,5 @@ function caAutoloader($className){
 
 // Register Autoload function
 spl_autoload_register('caAutoloader');
+
+Auth::init();

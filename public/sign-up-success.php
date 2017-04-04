@@ -7,6 +7,7 @@
     <div class="row">
 
         <h1>Thank you for Signing up!</h1>
+        <p>You can login from here <a href="login.php">login</a></p>
 
     </div>
     <!-- /.row -->

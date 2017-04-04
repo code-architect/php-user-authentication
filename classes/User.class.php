@@ -101,6 +101,84 @@ class User
 
 
 
+    /**
+     * Authenticate a user by email and password
+     *
+     * @param string $email     Email address
+     * @param string $password  Password
+     * @return mixed            User object if authenticated correctly, null otherwise
+     */
+    public static function authenticate($email, $password)
+    {
+        $user = static::findByEmail($email);
+
+        if ($user !== null) {
+
+            // Check the hashed password stored in the user record matches the supplied password
+            if (Hash::check($password, $user->password)) {
+                return $user;
+            }
+        }
+    }
+
+
+
+    /**
+     * Find the user with the specified email address
+     *
+     * @param string $email  email address
+     * @return mixed         User object if found, null otherwise
+     */
+    public static function findByEmail($email)
+    {
+        try {
+
+            $db = Database::get_instance();
+
+            $stmt = $db->prepare('SELECT * FROM users WHERE email = :email LIMIT 1');
+            $stmt->execute([':email' => $email]);
+            $user = $stmt->fetchObject('User');
+
+            if ($user !== false) {
+                return $user;
+            }
+
+        } catch(PDOException $exception) {
+
+            error_log($exception->getMessage());
+        }
+    }
+
+
+
+    /**
+     * Find the user with the specified ID
+     *
+     * @param string $id  ID
+     * @return mixed      User object if found, null otherwise
+     */
+    public static function findByID($id)
+    {
+        try {
+
+            $db = Database::get_instance();
+
+            $stmt = $db->prepare('SELECT * FROM users WHERE id = :id LIMIT 1');
+            $stmt->execute([':id' => $id]);
+            $user = $stmt->fetchObject('User');
+
+            if ($user !== false) {
+                return $user;
+            }
+
+        } catch(PDOException $exception) {
+
+            error_log($exception->getMessage());
+        }
+    }
+
+
+
 
 
 }

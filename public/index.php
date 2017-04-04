@@ -13,8 +13,7 @@
             <a href="register.php">Register New User</a><br/>
 
             <?php
-            $ar =['q'];
-            var_dump(empty($ar));
+            session_destroy();
             ?>
 
 
