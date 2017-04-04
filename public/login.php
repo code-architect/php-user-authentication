@@ -18,7 +18,16 @@
                         $password = $_POST['password'];
 
                         if(Auth::getInstance()->login($email, $password)){
-                            header('Location: admin/index.php');
+
+                            // redirect to intended page or home page
+                            if(isset($_SESSION['return_to'])){
+                                $url = $_SESSION['return_to'];
+                                unset($_SESSION['return_to']);
+                            }else{
+                                header('Location: admin/index.php');
+                            }
+                            redirect($url);
+
                         }
 
                     }

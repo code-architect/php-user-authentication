@@ -1,9 +1,10 @@
 <?php
 // if not admin redirect to login page
-if(!Auth::getInstance()->isLoggedIn())
-{
-    header('Location: /login.php');
-}
+//if(!Auth::getInstance()->isLoggedIn())
+//{
+//    header('Location: /login.php');
+//}
+Auth::getInstance()->requireLogin();
 ?>
 
 
@@ -62,7 +63,7 @@ if(!Auth::getInstance()->isLoggedIn())
                     <a href="../logout.php">Logout</a>
                 </li>
                 <li>
-                    <a href="#">Register</a>
+                    <a href="profile.php">Profile</a>
                 </li>
 
             </ul>

@@ -82,10 +82,27 @@ class Auth
     }
 
 
+    /**
+     * Logging out the user
+     */
     public function logout()
     {
         $_SESSION = [];
         session_destroy();
+    }
+
+
+    public function requireLogin()
+    {
+        if(!$this->isLoggedIn())
+        {
+            // save the requested page to return to after logging in
+            $url = $_SERVER['REQUEST_URI'];
+            if(!empty($url)){
+                $_SESSION['return_to'] = $url;
+            }
+            redirect('/login.php');
+        }
     }
 
 
