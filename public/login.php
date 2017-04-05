@@ -26,11 +26,10 @@
                             if(isset($_SESSION['return_to'])){
                                 $url = $_SESSION['return_to'];
                                 unset($_SESSION['return_to']);
+                                redirect($url);
                             }else{
                                 header('Location: admin/index.php');
                             }
-                            redirect($url);
-
                         }
 
                     }

@@ -139,6 +139,17 @@ class Auth
      */
     public function logout()
     {
+        //forget the remembered login if set
+        if(isset($_COOKIE['remember_me']))
+        {
+            //delete the record from the database
+            $this->getCurrentUser()->forgetLogin(sha1($_COOKIE['remember_me']));
+
+            //delete the cookie in the user system
+            setcookie('remember_token', '', time() - 3600);
+        }
+
+        // remove all variables and destroy the session
         $_SESSION = [];
         session_destroy();
     }

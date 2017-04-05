@@ -223,6 +223,32 @@ class User
         }
     }
 
+    /**
+     * Forget the login based on the token value
+     *
+     * @param string $token  Remember token
+     * @return void
+     */
+    public function forgetLogin($token)
+    {
+        if ($token !== null) {
+
+            try {
+
+                $db = Database::getInstance();
+
+                $stmt = $db->prepare('DELETE FROM remembered_logins WHERE token = :token');
+                $stmt->bindParam(':token', $token);
+                $stmt->execute();
+
+            } catch(PDOException $exception) {
+
+                // Log the detailed exception
+                error_log($exception->getMessage());
+            }
+        }
+    }
+
 
 
 
