@@ -12,9 +12,7 @@
 
             <a href="register.php">Register New User</a><br/>
 
-            <?php
-            session_destroy();
-            ?>
+
 
 
             <ul class="list-unstyled"><br/><br/><br/><br/>

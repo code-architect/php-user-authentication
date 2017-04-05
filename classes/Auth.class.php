@@ -92,6 +92,9 @@ class Auth
     }
 
 
+    /**
+     * Without login users are not welcome on this certain page
+     */
     public function requireLogin()
     {
         if(!$this->isLoggedIn())
@@ -105,6 +108,17 @@ class Auth
         }
     }
 
+
+    /**
+     * If the user is logged in, the is not allowed here
+     */
+    public function requireGuest()
+    {
+        if($this->isLoggedIn())
+        {
+            redirect('admin/index.php');
+        }
+    }
 
 
 

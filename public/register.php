@@ -1,6 +1,6 @@
 <?php require '../includes/init.php'; ?>
 <?php include 'parts/header.php'; ?>
-
+<?php Auth::getInstance()->requireGuest(); ?>
 <!-- Page Content -->
 <div class="container">
 
