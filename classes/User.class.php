@@ -179,6 +179,52 @@ class User
 
 
 
+    public function rememberLogin($expiry_date)
+    {
+        // generate a unique token
+        $token = uniqid($this->email, true);
+        try{
+            $db = Database::get_instance();
+
+            $stmt = $db->prepare('INSERT INTO remembered_logins (token, user_id, expires_at) VALUES (:token, :user_id, :expires_at)');
+            $stmt->bindParam(':token', sha1($token));
+            $stmt->bindParam(':user_id', $this->id, PDO::PARAM_INT);
+            $stmt->bindParam(':expires_at', date('Y-m-d H:i:s', $expiry_date));
+
+            if($stmt->rowCount == 1){
+                return $token;
+            }
+
+        }catch (PDOException $e){
+            // Log the detailed exception
+            error_log($e->getMessage());
+        }
+        return false;
+    }
+
+
+
+
+    public static function findByRememberToken($token)
+    {
+        try{
+            $db = Database::get_instance();
+
+            $stmt = $db->prepare('Select u.* from users u JOIN remembered_logins r ON u.id = r.user_id WHERE token = :token');
+            $stmt->execute([':token' => $token]);
+            $user = $stmt->fetchObject('User');
+
+            if($user !== false)
+            {
+                return $user;
+            }
+        }catch (PDOException $e){
+            error_log($e->getMessage());
+        }
+    }
+
+
+
 
 
 }
