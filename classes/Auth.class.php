@@ -53,7 +53,20 @@ class Auth
                 // set the "remember me" cookie with the token value and expiry date
                 if($token !== false)
                 {
-                    setcookie('remember_token',  $token, $expiry);
+                    // Using header function to set cookies instead of php setcookie function
+                    // so cookie flags httpOnly and SameSite can be set.
+                    if (!defined('HOSTNAME')) {
+                        // If $_SERVER['SERVER_NAME'] is untrusted (with UseCanonicalName off)
+                        // then at least remove new lines.
+                        header('Set-Cookie: remember_token='.rawurlencode($token).'; '.
+                        str_replace(array("\r", "\n"), '', $_SERVER['SERVER_NAME']).
+                        '; path=/; HttpOnly; SameSite=strict;');
+                    } else {
+                        header('Set-Cookie: remember_token='.rawurlencode($token).'; '.HOSTNAME.
+                        '; path=/; HttpOnly; SameSite=strict;');
+                    }
+                    
+
                 }
             }
 
